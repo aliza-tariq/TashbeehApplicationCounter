@@ -13,9 +13,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tashbeeh1,tashbeeh2,tashbeeh3,tashbeeh4;
+    private TextView tashbeeh1,tashbeeh2,tashbeeh3,tashbeeh4,textShow;
     private TextView reciteSt1,reciteSt2,reciteSt3,reciteSt4;
-    private Button btn1,btn2,btn3,btn4;
+    private Button btn1,btn2,btn3,btn4,btnShow;
     private DbHelper db=new DbHelper(MainActivity.this);
 
     List<Tashbee> studentList = new ArrayList<>();
@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
         btn3=findViewById(R.id.Recite3);
         btn4=findViewById(R.id.Recite4);
+
+        btnShow=findViewById(R.id.btnShow);
+        textShow=findViewById(R.id.textShow);
+
+
         Tashbee tasbee1=new  Tashbee("2023-02-06",0,0,0,0);
         tashbeeh1.setText("0");
         tashbeeh2.setText("0");
@@ -150,6 +155,22 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ArrayList<Tashbee> arr=db.getAllResults();
+                String str1="";
+                for(int i=0;i<arr.size();i++)
+                {
+                    str1=str1+"Date : "+arr.get(i).getDate()+"Tasbee1 : "+
+                            arr.get(i).getTashbeeh1()+" Tasbee2 : "+arr.get(i).getTashbeeh2()+
+                           "Tasbee3" +arr.get(i).getTashbeeh3()+
+                            "Tasbee4"+arr.get(i).getTashbeeh4()+"\n\n";
+                }
+                textShow.setText(str1);
+            }
+        });
 
         //  studentList.addAll(Arrays.asList(new Tashbee[]{f0,f1,f2,f3,f4}));
 
