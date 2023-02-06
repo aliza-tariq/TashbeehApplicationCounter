@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    public static final String DATE1 = "2023-01-30";
+    public static final String DATE1 = "Date";
     public static final String TASHBEEH1 ="TASHBEEH1";
     public static final String TASHBEEH2 = "TASHBEEH2";
     public static final String TASHBEEH3 = "TASHBEEH3";
@@ -33,7 +33,7 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableSTatement = "CREATE TABLE " + Tashbeeh_TABLE + "(" + Tashbeeh_ID +
-                " Integer PRIMARY KEY AUTOINCREMENT, " +
+                " Integer PRIMARY KEY AUTOINCREMENT, " + DATE1+ " String, "+
                 TASHBEEH1 + " String, " + TASHBEEH2 + " String, " +TASHBEEH3 + " String, "
                 +TASHBEEH4 + " String ) ";
 
@@ -102,7 +102,7 @@ public class DbHelper extends SQLiteOpenHelper {
         cv.put(TASHBEEH2, lm.getTashbeeh2());
         cv.put(TASHBEEH3, lm.getTashbeeh3());
         cv.put(TASHBEEH4, lm.getTashbeeh4());
-        db.update(Tashbeeh_TABLE,cv, "DATE1 = ?", new String[]{lm.getDate()});
+        db.update(Tashbeeh_TABLE,cv, "DATE = ?", new String[]{lm.getDate()});
         db.close();
     }
 
